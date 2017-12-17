@@ -3,21 +3,21 @@
 - include_vars: "{{ ansible_os_family }}_vars.yml"
 
 - name: Install Bind9
-  include: install_bind9.yml
+  include_tasks: install_bind9.yml
 
 - name: Set needed facts
-  include: set_facts.yml
+  include_tasks: set_facts.yml
 
 - name: Configure DNS Cache
-  include: configure_options.yml
+  include_tasks: configure_options.yml
   when: bind_is_master == True
   
 - name: Configure DNS Master
-  include: configure_master.yml
+  include_tasks: configure_master.yml
   when: bind_is_master == True
 
 - name: Configure DNS Slave
-  include: configure_slave.yml
+  include_tasks: configure_slave.yml
   when: bind_is_master == False and bind_is_slave == True
   
 - name: Ensure bind9 is started and enabled at boot
