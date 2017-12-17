@@ -21,7 +21,7 @@
   when: bind_is_master == False and bind_is_slave == True
   
 - name: Ensure bind9 is started and enabled at boot
-  service: 
+  service:
     name={{ bind_service }}
     state=restarted
     enabled=yes
